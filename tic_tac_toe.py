@@ -94,6 +94,6 @@ class TicTacToeGame():
         winner = self.check_winner()
         next_move = self.check_move() if not winner else False
         self.change_player()
-        return next_move, winner
+        return (next_move, winner)
 
         
