@@ -1,4 +1,4 @@
-from typing import Literal
+from typing import Literal, Tuple
 import random
 
 class TicTacToeBoard():
@@ -56,10 +56,10 @@ class TicTacToeGame():
         current_player_index = self.players.index(self.current_player)
         self.current_player = self.players[1 - current_player_index]
 
-    def player_move(self, row: Literal[0,1,2], col: Literal[0,1,2]):
+    def player_move(self, row: Literal[0,1,2], col: Literal[0,1,2]) -> None:
         self.tic_tac_toe_board.set_symbol(row=row, col=col, symbol=self.current_player)
 
-    def check_move(self):
+    def check_move(self) -> bool:
         move_exists = False
         board = self.tic_tac_toe_board.get_board()
         for i in range(3):
@@ -90,7 +90,7 @@ class TicTacToeGame():
                 return self.tic_tac_toe_board.get_symbol(0, 2)
         return None
     
-    def next_round(self):
+    def next_round(self) -> Tuple[bool, str]:
         winner = self.check_winner()
         next_move = self.check_move() if not winner else False
         self.change_player()
